@@ -1,10 +1,15 @@
 ﻿using System;
 
+using Console = VSConsole.Console;
+
 class Program
 {
     static void Main(string[] args)
     {
+        Console.Clear();
+
         var littlePigs = EstablishProtagonistsWithPreferredBuildingMaterials(typeof(Straw), typeof(Sticks), typeof(Bricks));
+
         var bigBadWolf = EstablishAntagonist();
 
         for (int i = 0; i < littlePigs.Length; i++)
@@ -34,8 +39,7 @@ class Program
             }
         }
 
-        Console.WriteLine();
-        Console.WriteLine("The End.");
+        EndStory();
     }
 
     private static Pig[] EstablishProtagonistsWithPreferredBuildingMaterials(params Type[] buildingtypes)
@@ -57,6 +61,17 @@ class Program
         Console.WriteLine("And, a big bad wolf.");
 
         return new Wolf();
+    }
+
+    private static void EndStory()
+    {
+        Console.WriteLine();
+        Console.BackgroundColor = ConsoleColor.Yellow;
+        Console.ForegroundColor = ConsoleColor.Black;
+        Console.WriteLine("The End.");
+
+        Console.BackgroundColor = ConsoleColor.Black;
+        Console.ForegroundColor = ConsoleColor.Yellow;
     }
 }
 
@@ -153,7 +168,12 @@ public class House
         }
         else
         {
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine($"But the house stood firm because it was made of {buildingType}.");
+
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.Yellow;
         }
     }
 }
